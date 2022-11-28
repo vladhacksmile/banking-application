@@ -1,0 +1,190 @@
+<p-toast></p-toast>
+<div class="block info-block p-card">
+  <p-scrollPanel [style]="{width: '100%', height: '100%', margin: 'auto'}" styleClass="custombar1">
+    <div class="buttons-block">
+      <button pButton pRipple type="button" label="Отмена" [routerLink]="['/home']" class="p-button-outlined"></button>
+      <button pButton pRipple label="Сохранить" class="p-button-outlined" type="submit" (click)="onSubmit()"></button>
+    </div>
+  <div class="main-content">
+    <div class="info-target">
+      <form class="add-target-form" [formGroup]="form">
+
+        <span class="header-target">
+              <h1>
+                {{targetInfo.name}}
+              </h1>
+        </span>
+
+        <div class="image-target">
+          <span class="material-icons target-icon-big" *ngIf="currentIcon">{{currentIcon}}</span>
+        </div>
+        <div class="main-info-target">
+          <div class="sample-title-input-target">
+              <span class="text-input-target title-target">
+                Прогресс цели:
+              </span>
+            <div class="subtitle-target">
+              <div class="card">
+                <p-progressBar [value]="percentage"></p-progressBar>
+              </div>
+            </div>
+          </div>
+
+          <div class="sample-input-target">
+              <span class="text-input-target">
+                Накоплено:
+              </span>
+            <div class="input-target">
+              {{this.targetInfo.sum + " ₽"}}
+            </div>
+          </div>
+
+          <div class="sample-input-target">
+              <span class="text-input-target">
+                Осталось:
+              </span>
+            <div class="input-target">
+              {{targetInfo.amount - targetInfo.sum>0? targetInfo.amount - targetInfo.sum + " ₽": "Цель выполнена"}}
+            </div>
+          </div>
+
+
+          <div class="sample-input-target">
+              <span class="text-input-target">
+                Название цели
+              </span>
+          </div>
+          <input [style]="{'width':'100%'}" id="target-name" type="text" formControlName="name" [(ngModel)]="targetInfo.name" pInputText required>
+
+
+          <div class="sample-input-target">
+              <span class="text-input-target">
+                Сумма, которую хотите накопить
+              </span>
+          </div>
+          <input [style]="{'width':'100%'}" id="target-amount" type="text" formControlName="amount" [(ngModel)]="targetInfo.amount" pInputText required>
+
+          <div class="sample-input-target">
+              <span class="text-input-target">
+                Приоритет
+              </span>
+          </div>
+          <span>
+              <p-dropdown id="target-priority" [style]="{'width':'100%'}" [options]="priorities" formControlName="priority" [(ngModel)]="currentPriority" optionLabel="name" optionValue="value" [showClear]="true">
+              </p-dropdown>
+          </span>
+
+          <div class="sample-input-target">
+            <span class="text-input-target">
+              Супер-приоритетная?
+            </span>
+            <div class="input-target">
+              <p-inputSwitch formControlName="isSuperPriority" [(ngModel)]="isSuper"></p-inputSwitch>
+            </div>
+          </div>
+
+          <div class="sample-input-target">
+              <span class="text-input-target">
+                Дата начала накопления:
+              </span>
+            <div class="input-target">
+              {{targetInfo.creationDate| date: 'dd.L.yyyy' }}
+            </div>
+          </div>
+
+          <div class="sample-input-target">
+              <span class="text-input-target">
+                Выберите изображение цели
+              </span>
+          </div>
+          <span>
+            <p-dropdown [style]="{'width':'100%'}" [options]="icons" [(ngModel)]="selectedIcon" formControlName="icon" optionLabel="name" placeholder="Выберите иконку" >
+              <ng-template pTemplate="selectedItem">
+                <div class="icon-item icon-item-value"  *ngIf="selectedIcon">
+                  <div>{{selectedIcon.name}}</div>
+                </div>
+              </ng-template>
+              <ng-template let-icon pTemplate="item">
+                <div class="icon-item">
+                  <span class="material-icons">{{icon.value}}</span>
+                  <div>{{icon.name}}</div>
+                </div>
+              </ng-template>
+            </p-dropdown>
+          </span>
+        </div>
+      </form>
+
+      <div class="cards-info">
+        <div class="cards-carousel" *ngIf="hasCards">
+          <p-dropdown [style]="{'width':'100%', 'text-align': 'center'}" [options]="cards" [(ngModel)]="selectedCard" optionLabel="cardNumber" placeholder="Выберите карту" >
+            <ng-template pTemplate="selectedItem">
+              <div class="product-item">
+                <ng-credit-card [name]="selectedCard.embossingName" [number]="selectedCard.cardNumber" [cvc]="selectedCard.cvv" [expiry]="selectedCard.cardExpiry" ></ng-credit-card>
+              </div>
+            </ng-template>
+            <ng-template let-ps pTemplate="item">
+              <div class="product-item">
+                <ng-credit-card [name]="ps.embossingName" [number]="ps.cardNumber" [cvc]="ps.cvv" [expiry]="ps.cardExpiry" ></ng-credit-card>
+              </div>
+            </ng-template>
+          </p-dropdown>
+        </div>
+        <form class="add-target-form" [formGroup]="formReplenish" (submit)="onSubmitReplenish()" *ngIf="hasCards">
+          <div class="sample-title-input-target">
+            <span class="text-input-target title-target">
+              Сумма которую хотите внести сейчас:
+            </span>
+            <div class="subtitle-target">
+              <div class="card">
+                <p-inputNumber [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}" mode="currency" currency="RUB" locale="ru-RU" formControlName="amount"></p-inputNumber>
+                <button pButton pRipple type="submit" label="Пополнить цель"  class="p-button-outlined"></button>
+              </div>
+            </div>
+          </div>
+        </form>
+        <form class="add-target-form" [formGroup]="formWithdraw" (submit)="onSubmitWithdraw()" *ngIf="hasCards">
+          <div class="sample-title-input-target">
+            <span class="text-input-target title-target">
+              Сумма которую хотите вывести сейчас:
+            </span>
+            <div class="subtitle-target">
+              <div class="card">
+                <p-inputNumber [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}" mode="currency" currency="RUB" locale="ru-RU" formControlName="amount"></p-inputNumber>
+                <button pButton pRipple type="submit" label="Вывести деньги"  class="p-button-outlined"></button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="sample-title-input-target">
+      <div class="subtitle-target">
+        <span class="text-input-target title-target">
+              История операций:
+        </span>
+        <div class="col-12 md:col-4">
+          <p-scrollPanel [style]="{width: '80%', height: '200px', margin: 'auto'}" styleClass="custombar1">
+            <div class="layout-transactions">
+              <div class="layout-transaction" *ngFor="let transaction of targetInfo.savingAccount.savingAccountTransactions; index as i;">
+                <div class="transaction">
+                  <span class="material-icons transaction-icon">shopping_cart</span>
+                </div>
+                <div class="transaction-category">
+                  {{transaction.category}}
+                </div>
+                <div class="transaction-data">
+                  {{transaction.date | date : 'dd.L.yyyy' }}
+                </div>
+                <div class="transaction-amount">
+                  {{transaction.amount}}
+                </div>
+              </div>
+            </div>
+          </p-scrollPanel>
+        </div>
+      </div>
+    </div>
+  </div>
+  </p-scrollPanel>
+</div>

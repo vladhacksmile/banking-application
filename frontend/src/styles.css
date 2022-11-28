@@ -1,0 +1,48 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body {
+  height: 100%;
+
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: #E5E5E5;
+}
+
+.info-block{
+  background-color: white;
+  border-radius: 7px;
+  margin: 0.5rem;
+}
+
+app-navbar{
+  width:10%;
+}
+
+app-home{
+  display: contents;
+}
+
+body{
+  overflow: hidden;
+}
+.main-info{
+  width:90%
+}
+
+@media (max-width: 576px) {
+  app-navbar{
+    width: 100%;
+    position: absolute;
+    top:0;
+  }
+  .main-info{
+    z-index: 2;
+    overflow: scroll;
+    height: 77vh;
+    width:100%;
+    margin-top: 90px;
+  }
+}
+

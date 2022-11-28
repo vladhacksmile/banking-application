@@ -1,0 +1,34 @@
+.target-block {
+  display: flex;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card-body{
+  border-style: solid;
+  border-radius: 10px;
+  padding: 1rem;
+  border-color: #6f848f80;
+  margin: 0 0.5rem 1rem 0.5rem;
+}
+
+.mat-icon {
+  height: 40px;
+  width: 40px;
+  font-size: 40px;
+  line-height: 40px;
+}
+
+.inline-spaces {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.mat-fab{
+  margin: 0 ;
+  background-color: white;
+}

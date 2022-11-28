@@ -1,0 +1,61 @@
+<p-toast></p-toast>
+<div class="block info-block p-card">
+  <form class="settings-form" [formGroup]="form" (submit)="onSubmit()">
+    <div class="buttons-block">
+      <button pButton pRipple type="button" label="Назад" [routerLink]="['/home']" class="p-button-outlined"></button>
+      <button pButton pRipple label="Сохранить" class="p-button-outlined" type="submit" ></button>
+    </div>
+    <div class="settings-main-info">
+      <span class="header-target">
+        <h1>
+          Настройки
+        </h1>
+      </span>
+      <div class="sample-input-target">
+            <span class="text-input-target">
+               Ваше имя:
+            </span>
+        <div class="input-target">
+              <span class="p-float-label">
+                <input [style]="{'width':'100%'}" formControlName="name" [(ngModel)]="profileData.name" placeholder="Введите ваше имя" pInputText>
+              </span>
+        </div>
+    </div>
+      <div class="sample-input-target">
+            <span class="text-input-target">
+              Ваша фамилия:
+            </span>
+        <div class="input-target">
+              <span class="p-float-label">
+                <input [style]="{'width':'100%'}" formControlName="surname" [(ngModel)]="profileData.surname" placeholder="Введите вашу фамилию" pInputText>
+              </span>
+        </div>
+      </div>
+      <div class="sample-input-target flex-sample-input-target">
+        <div>
+          <p-inputSwitch formControlName="isEvenDistribution" [(ngModel)]="isEvenDistributionModel"></p-inputSwitch>
+        </div>
+        <span class="text-input-target">
+              Равномерное распределение средств
+        </span>
+      </div>
+      <div class="sample-input-target flex-sample-input-target">
+        <div >
+          <p-inputSwitch formControlName="isUseCashBack" [(ngModel)]="isUsedCashbackModel"></p-inputSwitch>
+
+        </div>
+        <span class="text-input-target">
+              Переводить кешбек с покупок на цели
+            </span>
+      </div>
+      <div class="sample-input-target flex-sample-input-target">
+        <div>
+          <p-inputSwitch formControlName="isPercentageOnBalance" [(ngModel)]="isPercentageOnBalanceModel"></p-inputSwitch>
+        </div>
+        <span class="text-input-target">
+          Переводить остаток по счету на цели
+        </span>
+      </div>
+    </div>
+  </form>
+</div>
