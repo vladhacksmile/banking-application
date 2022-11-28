@@ -2,6 +2,7 @@ package com.vtb.payandsave.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.vtb.payandsave.entity.card.Card;
+import com.vtb.payandsave.entity.savingAccount.SavingAccount;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -39,6 +40,8 @@ public class Account implements UserDetails {
     private Set<Target> targets;
     @OneToMany(targetEntity = Card.class, mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Card> cards;
+    @OneToOne(targetEntity = Passport.class, mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Passport passport;
 
     public Account(String username, String password) {
         this.username = username;
