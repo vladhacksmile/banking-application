@@ -2,8 +2,11 @@ package com.vtb.payandsave.service;
 
 import com.vtb.payandsave.entity.Account;
 import com.vtb.payandsave.entity.card.Card;
+import com.vtb.payandsave.entity.card.CardCashbackCategory;
 import com.vtb.payandsave.entity.card.CardTransaction;
+import com.vtb.payandsave.exception.CardNotFoundException;
 import com.vtb.payandsave.model.target.TargetAllocateMoneyType;
+import com.vtb.payandsave.repository.CardCashbackCategoryRepository;
 import com.vtb.payandsave.repository.CardRepository;
 import com.vtb.payandsave.repository.TransactionRepository;
 import com.vtb.payandsave.request.card.CardReplenishmentRequest;
@@ -23,6 +26,9 @@ import java.util.Optional;
 public class CardService {
     @Autowired
     CardRepository cardRepository;
+
+    @Autowired
+    CardCashbackCategoryRepository cardCashbackCategoryRepository;
 
     @Autowired
     TargetService targetService;
@@ -92,6 +98,16 @@ public class CardService {
             card.setActive(cardSettingsRequest.isActive());
             needToUpdate = true;
         }
+
+        if(cardSettingsRequest.getCashback1() != null)
+            card.getCashbackCategories().add(cardCashbackCategoryRepository.findById(cardSettingsRequest.getCashback1()).get());
+        if(cardSettingsRequest.getCashback2() != null)
+            card.getCashbackCategories().add(cardCashbackCategoryRepository.findById(cardSettingsRequest.getCashback2()).get());
+        if(cardSettingsRequest.getCashback3() != null)
+            card.getCashbackCategories().add(cardCashbackCategoryRepository.findById(cardSettingsRequest.getCashback3()).get());
+        if(cardSettingsRequest.getCashback4() != null)
+            card.getCashbackCategories().add(cardCashbackCategoryRepository.findById(cardSettingsRequest.getCashback4()).get());
+        needToUpdate = true; // TODO поправить
 
         if(needToUpdate) {
             cardRepository.save(card);

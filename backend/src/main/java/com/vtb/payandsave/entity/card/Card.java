@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
 
@@ -43,6 +44,13 @@ public class Card {
     private String cvv;
     private String cardNumber;
     private String embossingName;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name="card_cashback_categories",
+            joinColumns = { @JoinColumn (name="card_id") },
+            inverseJoinColumns = { @JoinColumn (name="cashbackCategory_id") }
+    )
+    private Set<CardCashbackCategory> cashbackCategories = new HashSet<>();
 
     public Card(CardType cardType, CardPaymentSystem cardPaymentSystem, Account account) {
         this.cardType = cardType;
