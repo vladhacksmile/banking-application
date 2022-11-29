@@ -38,6 +38,8 @@ import {CardComponent} from "./components/card/card.component";
 import {NgCreditCardModule} from "angular-credit-card";
 import {ToastModule} from "primeng/toast";
 import {InputMaskModule} from "primeng/inputmask";
+import {StepsModule} from "primeng/steps";
+import {CheckboxModule} from "primeng/checkbox";
 
 @NgModule({
   declarations: [
@@ -55,32 +57,34 @@ import {InputMaskModule} from "primeng/inputmask";
     RegisterComponent,
     CardComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatButtonModule,
-    MatIconModule,
-    MatToolbarModule,
-    ChartModule,
-    ProgressBarModule,
-    ScrollPanelModule,
-    CarouselModule,
-    FormsModule,
-    ReactiveFormsModule,
-    ButtonModule,
-    InputTextModule,
-    InputNumberModule,
-    DropdownModule,
-    InputSwitchModule,
-    AvatarModule,
-    CardModule,
-    DialogModule,
-    HttpClientModule,
-    NgCreditCardModule,
-    ToastModule,
-    InputMaskModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatButtonModule,
+        MatIconModule,
+        MatToolbarModule,
+        ChartModule,
+        ProgressBarModule,
+        ScrollPanelModule,
+        CarouselModule,
+        FormsModule,
+        ReactiveFormsModule,
+        ButtonModule,
+        InputTextModule,
+        InputNumberModule,
+        DropdownModule,
+        InputSwitchModule,
+        AvatarModule,
+        CardModule,
+        DialogModule,
+        HttpClientModule,
+        NgCreditCardModule,
+        ToastModule,
+        InputMaskModule,
+        StepsModule,
+        CheckboxModule
+    ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })

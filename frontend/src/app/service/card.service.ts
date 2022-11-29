@@ -9,6 +9,7 @@ import {CardRequest} from "../request/CardRequest";
 import {PayByCardRequest} from "../request/PayByCardRequest";
 import {CardReplenishRequest} from "../request/CardReplenishRequest";
 import {CardSettingsRequest} from "../request/CardSettingsRequest";
+import {CardTransferRequest} from "../request/CardTransferRequest";
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -37,6 +38,10 @@ export class CardService {
 
   replenishCardById(credentials: CardReplenishRequest, id: number | undefined): Observable<any> {
     return this.http.post<any>(this.cardsUrl + "/" + id + "/replenish", credentials, httpOptions);
+  }
+
+  transferCardById(credentials: CardTransferRequest, id: number | undefined): Observable<any> {
+    return this.http.post<any>(this.cardsUrl + "/" + id + "/transfer", credentials, httpOptions);
   }
 
   settingsCardById(credentials: CardSettingsRequest, id: number | undefined): Observable<any> {
