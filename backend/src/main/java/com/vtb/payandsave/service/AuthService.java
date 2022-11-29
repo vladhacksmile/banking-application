@@ -1,6 +1,7 @@
 package com.vtb.payandsave.service;
 
 import com.vtb.payandsave.entity.Account;
+import com.vtb.payandsave.entity.Passport;
 import com.vtb.payandsave.jwt.JwtUtils;
 import com.vtb.payandsave.repository.AccountRepository;
 import com.vtb.payandsave.request.auth.LoginRequest;
@@ -51,8 +52,11 @@ public class AuthService {
                     .badRequest()
                     .body(new MessageResponse("Phone number already exists!"));
         }
-
-        Account account = new Account(signupRequest.getUsername(), passwordEncoder.encode(signupRequest.getPassword()));
+        Passport passport = new Passport(signupRequest.getName(), signupRequest.getSurname(),
+                signupRequest.getPatronymic(),signupRequest.getBirthday(), signupRequest.getSeries(),
+                signupRequest.getPassport_number(), signupRequest.getRegistration(), signupRequest.getIssue_place(),
+                signupRequest.getIssue_date(), signupRequest.getCode_division());
+        Account account = new Account(signupRequest.getUsername(), passwordEncoder.encode(signupRequest.getPassword()), signupRequest.getMail(), passport);
 
         accountRepository.save(account);
         return ResponseEntity.ok(new MessageResponse("Phone number registered!"));

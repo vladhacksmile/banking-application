@@ -31,6 +31,7 @@ public class Account implements UserDetails {
     private String password;
     private String name;
     private String surname;
+    private String mail;
     private Long superPriorityTarget_id;
     private boolean isUseCashback;
     private boolean isEvenDistribution;
@@ -43,9 +44,11 @@ public class Account implements UserDetails {
     @OneToOne(targetEntity = Passport.class, mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Passport passport;
 
-    public Account(String username, String password) {
+    public Account(String username, String password, String mail, Passport passport) {
         this.username = username;
         this.password = password;
+        this.mail = mail;
+        this.passport = passport;
         this.name = "Иван";
         this.surname = "Иванов";
     }

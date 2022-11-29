@@ -6,10 +6,7 @@ import com.vtb.payandsave.entity.card.CardTransaction;
 import com.vtb.payandsave.model.target.TargetAllocateMoneyType;
 import com.vtb.payandsave.repository.CardRepository;
 import com.vtb.payandsave.repository.TransactionRepository;
-import com.vtb.payandsave.request.card.CardReplenishmentRequest;
-import com.vtb.payandsave.request.card.CardRequest;
-import com.vtb.payandsave.request.card.CardSettingsRequest;
-import com.vtb.payandsave.request.card.PayByCardRequest;
+import com.vtb.payandsave.request.card.*;
 import com.vtb.payandsave.response.CardResponse;
 import com.vtb.payandsave.response.MessageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +43,12 @@ public class CardService {
 
             return ResponseEntity.ok(new MessageResponse("Card replenished"));
         }
+        return ResponseEntity.badRequest().body(new MessageResponse("Card didn't replenish! Amount must be positive!"));
+    }
+
+    @Transactional
+    public ResponseEntity<?> transfer(Account account, Card card, CardToCardReplenishmentRequest cardToCardReplenishmentRequest) {
+        cardRepository.callTransfer(card.getCardNumber(), cardToCardReplenishmentRequest.getAmount(), cardToCardReplenishmentRequest.getNumber());
         return ResponseEntity.badRequest().body(new MessageResponse("Card didn't replenish! Amount must be positive!"));
     }
 

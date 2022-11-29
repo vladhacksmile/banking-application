@@ -2,11 +2,8 @@ package com.vtb.payandsave.controller;
 
 import com.vtb.payandsave.entity.Account;
 import com.vtb.payandsave.entity.card.Card;
-import com.vtb.payandsave.exception.CardNotFoundException;
-import com.vtb.payandsave.request.card.CardReplenishmentRequest;
-import com.vtb.payandsave.request.card.CardRequest;
-import com.vtb.payandsave.request.card.CardSettingsRequest;
-import com.vtb.payandsave.request.card.PayByCardRequest;
+import com.vtb.payandsave.request.card.*;
+import com.vtb.payandsave.request.exception.CardNotFoundException;
 import com.vtb.payandsave.service.CardService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -35,6 +32,11 @@ public class CardController {
     @PostMapping("/{id}/replenish")
     public ResponseEntity<?> replenishCardById(@AuthenticationPrincipal Account account, @PathVariable long id, @RequestBody CardReplenishmentRequest cardReplenishmentRequest) {
         return cardService.replenishCard(account, getCardById(account, id), cardReplenishmentRequest);
+    }
+
+    @PostMapping("/{id}/transfer")
+    public ResponseEntity<?> replenishCardToCardById(@AuthenticationPrincipal Account account, @PathVariable long id, @RequestBody CardToCardReplenishmentRequest cardToCardReplenishmentRequest) {
+        return cardService.transfer(account, getCardById(account, id), cardToCardReplenishmentRequest);
     }
 
     @PostMapping("/{id}/pay")
