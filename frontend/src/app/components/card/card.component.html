@@ -22,6 +22,7 @@
           </div>
         </ng-template>
       </p-dropdown>
+    <div>Баланс карты: {{selectedCard.amount}}</div>
     </div>
   <div class="forms-block">
 <!-- ! cards? возможность создания/не создания -->
@@ -97,6 +98,14 @@
                 </div>
               </ng-template>
             </p-dropdown>
+
+            <div class="field-checkbox">
+              <p-checkbox name="cashback" value="1" label="1% всех покупок по карте" [(ngModel)]="selectedCashback"></p-checkbox>
+            </div>
+            <div class="field-checkbox">
+              <p-checkbox name="cashback" value="2" label="5% кафе и рестораны" [(ngModel)]="selectedCashback"></p-checkbox>
+            </div>
+
             <ng-template pTemplate="footer">
               <p-button icon="pi pi-check" type="submit" label="Ok" styleClass="p-button-text"></p-button>
             </ng-template>
@@ -131,7 +140,37 @@
       </div>
     </div>
 
-
+    <div class="transfer-block" *ngIf="cards?.length">
+      <div class="product-item">
+        <form class="add-target-form" [formGroup]="formTransfer" (submit)="onSubmitTransfer()">
+          <p-button (click)="displayTransferModal = true" icon="pi pi-external-link" label="Перевод с карты на карту" class="p-button-outlined"></p-button>
+          <p-dialog header="Перевод с карты на карту" [(visible)]="displayTransferModal" [modal]="true" [style]="{width: '50vw', height: '60vh'}"
+                    [draggable]="false" [resizable]="false">
+            <div class="sample-input-target">
+            <span class="text-input-target">
+              Сумма на которую хотите пополнить
+            </span>
+              <div class="input-target">
+                <p-inputNumber [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}" formControlName="amount" placeholder="Введите сумму">
+                </p-inputNumber>
+              </div>
+            </div>
+            <div class="sample-input-target">
+            <span class="text-input-target">
+              Номер карты на которую хотите перевести
+            </span>
+              <div class="input-target">
+                <p-inputNumber [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}" formControlName="number" placeholder="Введите номер карты">
+                </p-inputNumber>
+              </div>
+            </div>
+            <ng-template pTemplate="footer">
+              <p-button icon="pi pi-check" type="submit" label="Ok" styleClass="p-button-text"></p-button>
+            </ng-template>
+          </p-dialog>
+        </form>
+      </div>
+    </div>
 
     <div class="transaction-block" *ngIf="cards?.length">
       <div class="product-item">
