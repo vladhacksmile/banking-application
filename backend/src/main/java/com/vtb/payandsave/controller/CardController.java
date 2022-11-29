@@ -3,7 +3,7 @@ package com.vtb.payandsave.controller;
 import com.vtb.payandsave.entity.Account;
 import com.vtb.payandsave.entity.card.Card;
 import com.vtb.payandsave.request.card.*;
-import com.vtb.payandsave.request.exception.CardNotFoundException;
+import com.vtb.payandsave.exception.CardNotFoundException;
 import com.vtb.payandsave.service.CardService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
