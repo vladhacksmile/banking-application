@@ -9,6 +9,7 @@ import {CardReplenishRequest} from "../../request/CardReplenishRequest";
 import {PayByCardRequest} from "../../request/PayByCardRequest";
 import {CardSettingsRequest} from "../../request/CardSettingsRequest";
 import {MessageService} from "primeng/api";
+import {CardTransferRequest} from "../../request/CardTransferRequest";
 
 @Component({
   selector: 'app-card',
@@ -19,16 +20,18 @@ import {MessageService} from "primeng/api";
 export class CardComponent implements OnInit {
 
   cards!: Card [];
-
+  selectedCashback: string[] = ['1','2'];
 
   displayAddCardModal!: boolean;
   displaySettingsModal!: boolean;
   displayReplenishmentModal!: boolean;
+  displayTransferModal!: boolean;
   displayTransactionModal!: boolean;
 
   formAddCard!: FormGroup;
   formSettings!: FormGroup;
   formReplenishment!: FormGroup;
+  formTransfer!: FormGroup;
   formTransaction!: FormGroup;
 
   paymentSystem = [
@@ -110,6 +113,11 @@ export class CardComponent implements OnInit {
       "amount": null
     });
 
+    this.formTransfer! = this.formBuilder.group({
+      "amount": null,
+      "number": null
+    });
+
     this.formTransaction! = this.formBuilder.group({
       "name": null,
       "category": null,
@@ -137,6 +145,7 @@ export class CardComponent implements OnInit {
     this.cardService.addCard(new CardRequest(this.formAddCard.value.paymentSystem, this.formAddCard.value.type)).subscribe(
       data => {
         this.msg.add({severity:'success', summary: 'Карты', detail: 'Карта успешно добавлена!'});
+        this.ngOnInit();
       },
       error => {
       }
@@ -147,7 +156,7 @@ export class CardComponent implements OnInit {
     this.formSettings.controls['active'].setValue(this.selectedActivity.value);
     this.formSettings.controls['roundingStep'].setValue(this.selectedRound.value);
     // alert(JSON.stringify(this.formSettings.value));
-    this.cardService.settingsCardById(new CardSettingsRequest(this.formSettings.value.active, this.formSettings.value.roundingStep), this.selectedCard.card_id).subscribe(
+    this.cardService.settingsCardById(new CardSettingsRequest(this.formSettings.value.active, this.formSettings.value.roundingStep, 1, 2, 1, 2), this.selectedCard.card_id).subscribe(
       data => {
         this.msg.add({severity:'success', summary: 'Карты', detail: 'Настройки успешно изменены!'});
         this.ngOnInit();
@@ -163,7 +172,21 @@ export class CardComponent implements OnInit {
     //alert(JSON.stringify(this.formReplenishment.value));
     this.cardService.replenishCardById(new CardReplenishRequest(this.formReplenishment.value.amount), this.selectedCard.card_id).subscribe(
       data => {
-        this.msg.add({severity:'success', summary: 'Карты', detail: 'Деньги успешно пополнены!'});
+        this.msg.add({severity:'success', summary: 'Карты', detail: 'Карта успешно пополнена!'});
+        this.ngOnInit();
+      },
+      error => {
+
+      }
+    );
+
+  }
+  onSubmitTransfer(): void {
+    this.displayTransferModal = false;
+    alert(JSON.stringify(this.formTransfer.value));
+    this.cardService.transferCardById(new CardTransferRequest(this.formTransfer.value.amount, this.formTransfer.value.number), this.selectedCard.card_id).subscribe(
+      data => {
+        this.msg.add({severity:'success', summary: 'Карты', detail: 'Деньги успешно переведены с карты на карту!'});
         this.ngOnInit();
       },
       error => {

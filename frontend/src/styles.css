@@ -25,7 +25,7 @@ app-home{
 }
 
 body{
-  overflow: hidden;
+  overflow: scroll;
 }
 .main-info{
   width:90%
