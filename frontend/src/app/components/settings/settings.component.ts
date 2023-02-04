@@ -34,6 +34,8 @@ export class SettingsComponent implements OnInit {
   isUsedCashbackModel!: boolean;
   isPercentageOnBalanceModel!: boolean;
   isEvenDistributionModel!: boolean;
+  onlineLimit: number;
+  withdrawalLimit: number;
   constructor(
     private formBuilder: FormBuilder,
     private token: TokenStorageService,
@@ -52,6 +54,8 @@ export class SettingsComponent implements OnInit {
       isEvenDistribution: null,
       isPercentageOnBalance: null
     })
+    this.onlineLimit = 0;
+    this.withdrawalLimit = 0;
   }
 
   ngOnInit(): void {

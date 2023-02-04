@@ -1,9 +1,9 @@
 <p-toast></p-toast>
 <div class="login-block">
+  <span class="title-target">Регистрация</span>
   <form name="form" [formGroup]="form" (submit)="onSubmit()" #f="ngForm">
-    <span class="title-target">Регистрация</span>
     <span class="p-float-label">
-      <p-inputMask formControlName="username" placeholder="+7 999 999-99-99" mask="+7 999 999-99-99" ></p-inputMask>
+      <p-inputMask formControlName="username" placeholder="+7 999 999-99-99" mask="+7 999 999-99-99"></p-inputMask>
     </span>
 
     <span class="p-float-label">
@@ -11,37 +11,55 @@
     </span>
 
     <span class="p-float-label">
-      <input id="password" type="password" pInputText formControlName="password" placeholder="Пароль" required>
-    </span>
-    <span class="p-float-label">
-      <input id="password" type="password" pInputText formControlName="password" placeholder="Пароль" required>
+      <input id="name" pInputText formControlName="name" placeholder="Имя" required>
     </span>
 
     <span class="p-float-label">
-      <input id="password" type="password" pInputText formControlName="password" placeholder="Пароль" required>
-    </span>
-    <span class="p-float-label">
-      <input id="password" type="password" pInputText formControlName="password" placeholder="Пароль" required>
-    </span>
-    <span class="p-float-label">
-      <input id="password" type="password" pInputText formControlName="password" placeholder="Пароль" required>
-    </span>
-    <span class="p-float-label">
-      <input id="password" type="password" pInputText formControlName="password" placeholder="Пароль" required>
+      <input id="surname" pInputText formControlName="surname" placeholder="Фамилия" required>
     </span>
 
     <span class="p-float-label">
-      <input id="password" type="password" pInputText formControlName="password" placeholder="Пароль" required>
+      <input id="patronymic" pInputText formControlName="patronymic" placeholder="Отчество" required>
     </span>
 
     <span class="p-float-label">
-      <input id="password" type="password" pInputText formControlName="password" placeholder="Пароль" required>
+      <input id="mail" pInputText formControlName="mail" placeholder="Электронная почта" required>
     </span>
 
+    <span class="p-float-label">
+      <p-inputMask formControlName="birthday" placeholder="Дата рождения" mask="9999-99-99">
+      </p-inputMask>
+    </span>
 
-    <button pButton pRipple type="button" label="Зарегистрироваться" class="p-button-rounded" type="submit"></button>
+    <span class="p-float-label">
+      <p-inputMask formControlName="passport_series" placeholder="Серия" mask="9999"></p-inputMask>
+    </span>
 
-    <p>Уже зарегистрированы?</p>
-    <button pButton pRipple type="button" label="Войти" class="p-button-rounded" routerLink="/auth"></button>
+    <span class="p-float-label">
+      <p-inputMask formControlName="passport_number" placeholder="Номер паспорта" mask="999999"></p-inputMask>
+    </span>
+
+    <span class="p-float-label">
+      <p-inputMask formControlName="passport_code" placeholder="Код подразделения" mask="999"></p-inputMask>
+    </span>
+
+    <span class="p-float-label">
+      <input id="passport_issue_place" pInputText formControlName="passport_issue_place" placeholder="Место выдачи" required>
+    </span>
+
+    <span class="p-float-label">
+      <p-inputMask formControlName="passport_issue_date" placeholder="Дата выдачи" mask="9999-99-99">
+      </p-inputMask>
+    </span>
+
+    <span class="p-float-label">
+      <input id="passport_registration" pInputText formControlName="passport_registration" placeholder="Место регистрации" required>
+    </span>
+
+    <div class="reg-buttons">
+      <button pButton pRipple type="button" label="Зарегистрироваться" class="p-button-rounded" type="submit"></button>
+      <p>Уже зарегистрированы?</p>
+      <button pButton pRipple type="button" label="Войти" class="p-button-rounded" routerLink="/auth"></button>
+    </div>
   </form>
 </div>

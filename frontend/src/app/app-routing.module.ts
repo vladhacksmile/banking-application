@@ -42,7 +42,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'card',
     pathMatch: 'full'
   },
   { path: 'target/:id', component: TargetInfoComponent},

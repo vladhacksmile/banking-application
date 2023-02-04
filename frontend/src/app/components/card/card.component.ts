@@ -88,7 +88,6 @@ export class CardComponent implements OnInit {
     private msg: MessageService
   ) {
     this.cards = [];
-
   }
   ngOnInit(): void {
     this.info = {
@@ -183,7 +182,7 @@ export class CardComponent implements OnInit {
   }
   onSubmitTransfer(): void {
     this.displayTransferModal = false;
-    alert(JSON.stringify(this.formTransfer.value));
+    //alert(JSON.stringify(this.formTransfer.value));
     this.cardService.transferCardById(new CardTransferRequest(this.formTransfer.value.amount, this.formTransfer.value.number), this.selectedCard.card_id).subscribe(
       data => {
         this.msg.add({severity:'success', summary: 'Карты', detail: 'Деньги успешно переведены с карты на карту!'});

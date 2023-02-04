@@ -40,6 +40,7 @@ import {ToastModule} from "primeng/toast";
 import {InputMaskModule} from "primeng/inputmask";
 import {StepsModule} from "primeng/steps";
 import {CheckboxModule} from "primeng/checkbox";
+import {TableModule} from "primeng/table";
 
 @NgModule({
   declarations: [
@@ -83,7 +84,8 @@ import {CheckboxModule} from "primeng/checkbox";
         ToastModule,
         InputMaskModule,
         StepsModule,
-        CheckboxModule
+        CheckboxModule,
+        TableModule
     ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]

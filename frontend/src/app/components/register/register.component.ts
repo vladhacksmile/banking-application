@@ -18,32 +18,24 @@ export class RegisterComponent implements OnInit {
   isSignUpFailed = false;
   errorMessage = '';
   form!: FormGroup;
-  items: MenuItem[];
 
-  constructor(private authService: AuthService, private formBuilder: FormBuilder, private msg: MessageService) {
-    this.items = [{
-      label: 'Personal',
-      routerLink: 'personal'
-    },
-      {
-        label: 'Seat',
-        routerLink: 'seat'
-      },
-      {
-        label: 'Payment',
-        routerLink: 'payment'
-      },
-      {
-        label: 'Confirmation',
-        routerLink: 'confirmation'
-      }
-    ];
-  }
+  constructor(private authService: AuthService, private formBuilder: FormBuilder, private msg: MessageService) {}
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       username: null,
-      password: null
+      password: null,
+      name: null,
+      surname: null,
+      patronymic: null,
+      birthday: null,
+      passport_series: null,
+      passport_number: null,
+      passport_code: null,
+      passport_registration: null,
+      passport_issue_place: null,
+      passport_issue_date: null,
+      mail: null
     });
   }
 
@@ -55,12 +47,12 @@ export class RegisterComponent implements OnInit {
       this.form.value.surname,
       this.form.value.patronymic,
       this.form.value.birthday,
-      this.form.value.series,
+      this.form.value.passport_series,
       this.form.value.passport_number,
-      this.form.value.registration,
-      this.form.value.issue_place,
-      this.form.value.issue_date,
-      this.form.value.code_division,
+      this.form.value.passport_code,
+      this.form.value.passport_registration,
+      this.form.value.passport_issue_place,
+      this.form.value.passport_issue_date,
       this.form.value.mail);
 
     this.authService.signUp(this.signupInfo).subscribe(

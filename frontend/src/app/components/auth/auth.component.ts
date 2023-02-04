@@ -45,7 +45,7 @@ export class AuthComponent implements OnInit {
           this.tokenStorage.saveUsername(data.username);
           this.username = data.username;
 
-          location.href = "/main";
+          location.href = "/card";
         },
         error => {
           this.msg.add({severity:'error', summary: 'Вход', detail: 'Проверьте корректность введенных данных!'});

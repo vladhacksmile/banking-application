@@ -100,10 +100,10 @@
             </p-dropdown>
 
             <div class="field-checkbox">
-              <p-checkbox name="cashback" value="1" label="1% всех покупок по карте" [(ngModel)]="selectedCashback"></p-checkbox>
+              <p-checkbox name="cashback" value="1" label="5% кафе" [(ngModel)]="selectedCashback"></p-checkbox>
             </div>
             <div class="field-checkbox">
-              <p-checkbox name="cashback" value="2" label="5% кафе и рестораны" [(ngModel)]="selectedCashback"></p-checkbox>
+              <p-checkbox name="cashback" value="2" label="20% транспорт" [(ngModel)]="selectedCashback"></p-checkbox>
             </div>
 
             <ng-template pTemplate="footer">
@@ -160,8 +160,8 @@
               Номер карты на которую хотите перевести
             </span>
               <div class="input-target">
-                <p-inputNumber [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}" formControlName="number" placeholder="Введите номер карты">
-                </p-inputNumber>
+                <p-inputMask [style]="{'width':'100%'}" formControlName="number" placeholder="Введите номер карты" mask="9999 9999 9999 9999">
+                </p-inputMask>
               </div>
             </div>
             <ng-template pTemplate="footer">
@@ -234,6 +234,29 @@
       <div class="col-12 md:col-4">
         <p-scrollPanel [style]="{width: '80%', height: '200px', margin: 'auto'}" styleClass="custombar1">
           <div class="layout-transactions">
+            <div class="layout-transaction">
+              <div class="transaction">
+                <b>Иконка</b>
+              </div>
+              <div class="transaction-category">
+                <b>Категория</b>
+              </div>
+              <div class="transaction-name">
+                <b>Имя</b>
+              </div>
+              <div class="transaction-data">
+                <b>Дата</b>
+              </div>
+              <div class="transaction-amount">
+                <b>Сумма</b>
+              </div>
+              <div class="transaction-rounding">
+                <b>Округление</b>
+              </div>
+              <div class="transaction-cashback">
+                <b>Кешбек</b>
+              </div>
+            </div>
             <div *ngFor="let card of cards; index as i;">
               <div class="layout-transaction" *ngFor="let transaction of card.cardTransactions; index as i;">
               <div class="transaction">
@@ -242,6 +265,9 @@
               <div class="transaction-category">
                 {{transaction.category}}
               </div>
+                <div class="transaction-name">
+                  {{transaction.name}}
+                </div>
               <div class="transaction-data">
                 {{transaction.date | date : 'dd.L.yyyy' }}
               </div>
