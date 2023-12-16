@@ -20,15 +20,15 @@ public class CardRate {
     @JsonIgnore
     private Long cardRate_id;
     private String name;
-    private Double rate_condition;
-    private Double card_rate;
+    private Double rateCondition;
+    private Double cardRate;
     @OneToMany(mappedBy = "cardRate")
     @JsonIgnore
     private Set<Card> cards = new HashSet<>();
 
-    public CardRate(String name, Double rate_condition, Double card_rate) {
+    public CardRate(String name, Double rateCondition, Double cardRate) {
         this.name = name;
-        this.rate_condition = rate_condition;
-        this.card_rate = card_rate;
+        this.rateCondition = rateCondition;
+        this.cardRate = cardRate;
     }
 }

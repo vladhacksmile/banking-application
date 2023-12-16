@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -13,6 +14,7 @@ import java.util.Optional;
 @NoArgsConstructor
 @Getter
 @Setter
+@ToString
 @Entity
 @Table(name = "card_transactions")
 public class CardTransaction {
@@ -29,7 +31,7 @@ public class CardTransaction {
     private Float amount;
     private Date date;
     private Double cashback = 0D;
-    private float roundingAmount = 0;
+    private float roundingAmount;
     private float percentageOnBalance;
     private String operationSecurityCode;
 
@@ -46,19 +48,5 @@ public class CardTransaction {
         }
 
         this.operationSecurityCode = String.valueOf(hashCode());
-    }
-
-    @Override
-    public String toString() {
-        return "CardTransaction{" +
-                "transaction_id=" + transaction_id +
-                ", card=" + card +
-                ", name='" + name + '\'' +
-                ", category='" + category + '\'' +
-                ", amount=" + amount +
-                ", date=" + date +
-                ", cashback=" + cashback +
-                ", roundingAmount=" + roundingAmount +
-                '}';
     }
 }

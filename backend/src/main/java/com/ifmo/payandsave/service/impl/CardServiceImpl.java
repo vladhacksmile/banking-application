@@ -50,6 +50,7 @@ public class CardServiceImpl implements CardService {
 
         return ResponseEntity.ok(new MessageResponse("Card created!"));
     }
+
     @Override
     @Transactional
     public ResponseEntity<?> replenishCard(Account account, Card card, CardReplenishmentRequest cardReplenishmentRequest) {
@@ -104,6 +105,7 @@ public class CardServiceImpl implements CardService {
     }
 
     @Override
+    @Transactional
     public ResponseEntity<?> cardSettings(Account account, Card card, CardSettingsRequest cardSettingsRequest) {
         boolean needToUpdate = false;
 
@@ -156,7 +158,7 @@ public class CardServiceImpl implements CardService {
         if(needToUpdate) {
             String cardMessage = "Settings for card saved!";
             cardRepository.save(card);
-            if(card.isActive()) {
+            if (card.isActive()) {
                 return ResponseEntity.ok(new MessageResponse(cardMessage + " Card is active!"));
             } else {
                 return ResponseEntity.ok(new MessageResponse(cardMessage + " Card is blocking!"));

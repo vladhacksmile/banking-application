@@ -10,7 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ProfileResponse {
-    private Long account_id;
+    private Long accountId;
     private String phoneNumber;
     private String name;
     private String surname;
