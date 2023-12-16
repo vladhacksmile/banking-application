@@ -12,7 +12,6 @@ import java.util.Set;
 @NoArgsConstructor
 @Setter
 @Getter
-
 @Entity
 @Table(name = "target_saving_accounts")
 public class SavingAccount {

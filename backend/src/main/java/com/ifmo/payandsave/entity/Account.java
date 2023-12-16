@@ -2,19 +2,19 @@ package com.ifmo.payandsave.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ifmo.payandsave.entity.card.Card;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.*;
+import java.util.Collection;
+import java.util.Set;
 
 @NoArgsConstructor
+@AllArgsConstructor
+@ToString
 @Getter
 @Setter
-
 @Entity
 @Table(name = "accounts",
         uniqueConstraints = {

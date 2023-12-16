@@ -18,7 +18,6 @@ import java.util.Set;
 @NoArgsConstructor
 @Setter
 @Getter
-
 @Entity
 @Table(name = "account_cards")
 public class Card {
@@ -74,7 +73,8 @@ public class Card {
         this.cardExpiry = "infinity";
         this.encryptedPan = String.valueOf(hashCode());
         this.cvv = String.valueOf(CardUtils.generateEncryptedPan(100, 999));
-        this.cardNumber = "1000 " + CardUtils.generateEncryptedPan(1000, 9999) + " " + CardUtils.generateEncryptedPan(1000, 9999) + " " + CardUtils.generateEncryptedPan(1000, 9999);
+        this.cardNumber = "1000 " + CardUtils.generateEncryptedPan(1000, 9999) + " " + CardUtils.generateEncryptedPan(1000, 9999) +
+                " " + CardUtils.generateEncryptedPan(1000, 9999);
         this.embossingName = account.getSurname().toUpperCase(Locale.ROOT) + " " + account.getName().toUpperCase(Locale.ROOT);
         this.pin = String.valueOf(CardUtils.generateEncryptedPan(1000, 9999));
     }

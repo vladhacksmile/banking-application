@@ -5,7 +5,7 @@ import com.ifmo.payandsave.entity.card.Card;
 import com.ifmo.payandsave.exception.CardNotFoundException;
 import com.ifmo.payandsave.request.card.*;
 import com.ifmo.payandsave.service.CardService;
-import com.ifmo.payandsave.request.card.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
@@ -14,11 +14,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/cards")
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 public class CardController {
-    private final CardService cardService;
 
-    public CardController(CardService cardService) {
-        this.cardService = cardService;
-    }
+    @Autowired
+    private CardService cardService;
 
     @PostMapping
     public ResponseEntity<?> add(@AuthenticationPrincipal Account account, @RequestBody CardRequest cardRequest) {

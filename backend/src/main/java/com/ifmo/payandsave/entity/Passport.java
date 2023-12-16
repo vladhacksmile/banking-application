@@ -6,12 +6,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @NoArgsConstructor
 @Getter
 @Setter
-
 @Entity
 @Table(name = "account_passports")
 public class Passport {
@@ -25,25 +24,25 @@ public class Passport {
     private String name;
     private String surname;
     private String patronymic;
-    private Date birthday;
+    private LocalDateTime birthday;
     private Long series;
-    private Long passport_number;
+    private Long passportNumber;
     private String registration;
-    private String issue_place;
-    private Date issue_date;
-    private Long code_division;
+    private String issuePlace;
+    private LocalDateTime issueDate;
+    private Long codeDivision;
 
-    public Passport(String name, String surname, String patronymic, Date birthday, Long series, Long passport_number,
-                    String registration, String issue_place, Date issue_date, Long code_division) {
+    public Passport(String name, String surname, String patronymic, LocalDateTime birthday, Long series, Long passportNumber,
+                    String registration, String issuePlace, LocalDateTime issueDate, Long codeDivision) {
         this.name = name;
         this.surname = surname;
         this.patronymic = patronymic;
         this.birthday = birthday;
         this.series = series;
-        this.passport_number = passport_number;
+        this.passportNumber = passportNumber;
         this.registration = registration;
-        this.issue_place = issue_place;
-        this.issue_date = issue_date;
-        this.code_division = code_division;
+        this.issuePlace = issuePlace;
+        this.issueDate = issueDate;
+        this.codeDivision = codeDivision;
     }
 }

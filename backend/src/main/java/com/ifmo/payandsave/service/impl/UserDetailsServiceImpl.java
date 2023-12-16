@@ -1,4 +1,4 @@
-package com.ifmo.payandsave.service;
+package com.ifmo.payandsave.service.impl;
 
 import com.ifmo.payandsave.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,12 +12,12 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
-    AccountRepository accountRepository;
+    private AccountRepository accountRepository;
 
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return accountRepository.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("User not Found with username: " + username));
+                .orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + username));
     }
 }

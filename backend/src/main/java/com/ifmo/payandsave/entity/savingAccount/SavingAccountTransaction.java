@@ -11,7 +11,6 @@ import java.util.Date;
 @NoArgsConstructor
 @Getter
 @Setter
-
 @Entity
 @Table(name = "saving_account_transactions")
 public class SavingAccountTransaction {

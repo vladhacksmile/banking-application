@@ -13,11 +13,7 @@ import org.springframework.web.bind.annotation.*;
 public class AuthController {
 
     @Autowired
-    private final AuthService authService;
-
-    public AuthController(AuthService authService) {
-        this.authService = authService;
-    }
+    private AuthService authService;
 
     @PostMapping("/login")
     public ResponseEntity<?> authUser(@RequestBody LoginRequest loginRequest) {

@@ -1,8 +1,8 @@
 package com.ifmo.payandsave.configuration;
 
-import com.ifmo.payandsave.jwt.AuthenticationEntryPointImpl;
 import com.ifmo.payandsave.jwt.AuthTokenFilter;
-import com.ifmo.payandsave.service.UserDetailsServiceImpl;
+import com.ifmo.payandsave.jwt.AuthenticationEntryPointImpl;
+import com.ifmo.payandsave.service.impl.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,7 +23,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    UserDetailsServiceImpl userDetailsService;
+    private UserDetailsServiceImpl userDetailsService;
 
     @Autowired
     private AuthenticationEntryPointImpl authEntryPointJwt;

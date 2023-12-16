@@ -1,7 +1,6 @@
 package com.ifmo.payandsave.entity.card;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.ifmo.payandsave.model.card.CardUtils;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,7 +13,6 @@ import java.util.Optional;
 @NoArgsConstructor
 @Getter
 @Setter
-
 @Entity
 @Table(name = "card_transactions")
 public class CardTransaction {

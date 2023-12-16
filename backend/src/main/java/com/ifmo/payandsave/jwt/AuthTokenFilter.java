@@ -1,6 +1,7 @@
 package com.ifmo.payandsave.jwt;
 
-import com.ifmo.payandsave.service.UserDetailsServiceImpl;
+import com.ifmo.payandsave.service.impl.UserDetailsServiceImpl;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+@Log4j2
 public class AuthTokenFilter extends OncePerRequestFilter {
 
     @Autowired
@@ -32,13 +34,14 @@ public class AuthTokenFilter extends OncePerRequestFilter {
                 String username = jwtUtils.getUserNameFromJwtToken(jwt);
 
                 UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-                UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+                UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userDetails,
+                        null, userDetails.getAuthorities());
                 authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
                 SecurityContextHolder.getContext().setAuthentication(authenticationToken);
             }
         } catch (Exception e) {
-            // e.printStackTrace();
+            log.error("", e);
         }
         filterChain.doFilter(request, response);
     }

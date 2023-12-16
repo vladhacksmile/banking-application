@@ -12,7 +12,6 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter
 @Setter
-
 @Entity
 @Table(name = "cardDesign")
 public class CardDesign {
