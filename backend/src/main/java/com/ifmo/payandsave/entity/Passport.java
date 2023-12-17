@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @NoArgsConstructor
 @Getter
@@ -24,16 +24,16 @@ public class Passport {
     private String name;
     private String surname;
     private String patronymic;
-    private LocalDateTime birthday;
+    private Date birthday;
     private Long series;
     private Long passportNumber;
     private String registration;
     private String issuePlace;
-    private LocalDateTime issueDate;
+    private Date issueDate;
     private Long codeDivision;
 
-    public Passport(String name, String surname, String patronymic, LocalDateTime birthday, Long series, Long passportNumber,
-                    String registration, String issuePlace, LocalDateTime issueDate, Long codeDivision) {
+    public Passport(String name, String surname, String patronymic, Date birthday, Long series, Long passportNumber,
+                    String registration, String issuePlace, Date issueDate, Long codeDivision) {
         this.name = name;
         this.surname = surname;
         this.patronymic = patronymic;
