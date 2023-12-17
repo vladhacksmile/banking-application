@@ -1,10 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {SignUpInfo} from "../../model/auth/signup-info";
 import {AuthService} from "../../model/auth/auth.service";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {MessageService} from "primeng/api";
-import {StepsModule} from 'primeng/steps';
-import {MenuItem} from 'primeng/api';
 
 @Component({
   selector: 'app-register',
@@ -49,10 +47,10 @@ export class RegisterComponent implements OnInit {
       this.form.value.birthday,
       this.form.value.passport_series,
       this.form.value.passport_number,
-      this.form.value.passport_code,
       this.form.value.passport_registration,
       this.form.value.passport_issue_place,
       this.form.value.passport_issue_date,
+      this.form.value.passport_code,
       this.form.value.mail);
 
     this.authService.signUp(this.signupInfo).subscribe(
